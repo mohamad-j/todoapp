@@ -12,23 +12,16 @@
 
 
 
-function createTodo()
+function addTodo( listItem )
 {
-
-    /** The input */
-        let input = document.getElementById('name');
-    /** The textarea */
-        let tarea = document.getElementById('description');
-    /** A todo list element */
-        let listEl = createTodoElement(input.value, tarea.value );
     /** The ul elemnet */
         let todolist = document.getElementById('todoList');
     /** Add todo element to the list */
-        todolist.append( listEl );
+        todolist.append( listItem );
 
 }
 
-function createTodoElement( name, description )
+function createTodoElement( todoItem )
 {
     /** The name element */
         let h5 = document.createElement('h5');
@@ -57,10 +50,10 @@ function createTodoElement( name, description )
 
 
     /** The name of Todo */
-        h5.innerText = name;
+        h5.innerText = todoItem.name;
 
     /** The description of Todo */
-        p.innerHTML = "<span>"+description+"</span>";
+        p.innerHTML = "<span>"+todoItem.desc+"</span>";
 
     /** The Todd item */
         let li = document.createElement('li');
@@ -82,6 +75,7 @@ function createTodoElement( name, description )
 
 }
 
+
 /**
  * The API of javascript.
  * The window object
@@ -89,9 +83,51 @@ function createTodoElement( name, description )
  * The Object
  * Functions with return ?
  * The object returned by a function ?
+ * 
  * Breaking down strategy.
+ * 
+ * Data structure
+ * 
+ * Array.forEach()
+ * Array.map()
+ * 
+ * Object.entries()
+ * 
  * Continue Todo app.
  * 
  * Intoduction to JQuery
  * 
  */
+ let todoItems = [];
+
+ function createItem()
+ {
+    /** The input */
+    let input = document.getElementById('name');
+    /** The textarea */
+        let tarea = document.getElementById('description');
+    if( input.value.length === 0 ) {
+        alert(' The name is empty!');
+        return;
+    }
+    let newItem = new todoItem( input.value , tarea.value ) ;
+    todoItems.push( newItem );
+
+    addTodo( createTodoElement( newItem )  );
+}
+
+ 
+
+function todoItem( name, desc )
+{
+    return  {
+        name: name,
+        desc: desc,
+        crated: new Date(),
+        done: false,
+        removed: false
+    }
+}
+
+//////
+CreateToDoList( 'formId', 'UlID' );
