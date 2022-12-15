@@ -14,11 +14,11 @@
 }
 
 
-#secondrow {
+.todocontainer {
     min-height: 500px;
 }
 
-#formdiv {
+.form-container {
     width: 300px;
     height: 400px;
 }

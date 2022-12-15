@@ -1,133 +1,107 @@
-/**
- * Signing of declaration of consent.
- * Check the tasks / fix
- * Questions
- * Continue Todo app
- *      Todolist
- *      Adding Todo item
- *      Delete todo item
- *      Add validations
- *      Data structure
+/***************************************************
+ * ******************   FUNCTION   *****************
+ * ************************************************
  */
+let g_name = "Global";
 
-
-
-function addTodo( listItem )
+/**
+ * Without parameters
+ */
+function simpleFunction()
 {
-    /** The ul elemnet */
-        let todolist = document.getElementById('todoList');
-    /** Add todo element to the list */
-        todolist.append( listItem );
-
-}
-
-function createTodoElement( todoItem )
-{
-    /** The name element */
-        let h5 = document.createElement('h5');
-    /** The description element */
-        let p = document.createElement('p');
-
-    /** The close lement */
-        let close_el = document.createElement('span');
-        close_el.innerText = 'X';
-        close_el.style.position = "absolute";
-        close_el.style.top = '5px';
-        close_el.style.right = '5px';
-        close_el.style.color = 'red';
-        close_el.style.fontWeight = 'bolder';
-        close_el.style.cursor = 'pointer';
-        close_el.onclick = function(){ alert(" I clickd....") }; 
-
-
-    /** The checkbox */
-        let checkbox = document.createElement('input');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.style.position = "absolute";
-        checkbox.style.bottom = '5px';
-        checkbox.style.right = '5px';
-        checkbox.onchange = function() { alert(' Checkbox is changed ') }
-
-
-    /** The name of Todo */
-        h5.innerText = todoItem.name;
-
-    /** The description of Todo */
-        p.innerHTML = "<span>"+todoItem.desc+"</span>";
-
-    /** The Todd item */
-        let li = document.createElement('li');
-        li.classList.add('list-group-item');
-        li.classList.add('m-2');
-        li.style.position = 'relative';
-
-    /** Append elments */
-        /// Append name
-        li.append( h5 );
-        /// Append description
-        li.append( p );
-        /// Append close element
-        li.append( close_el );
-        /// Append checkbox
-        li.append( checkbox );
+    let name = "Marcus";
+    let age = 34;
     
-    return li;
+    console.log('  name ', name );
+
+    console.log(' Age ', age);
 
 }
 
 
-/**
- * The API of javascript.
- * The window object
- * The document object
- * The Object
- * Functions with return ?
- * The object returned by a function ?
- * 
- * Breaking down strategy.
- * 
- * Data structure
- * 
- * Array.forEach()
- * Array.map()
- * 
- * Object.entries()
- * 
- * Continue Todo app.
- * 
- * Intoduction to JQuery
- * 
- */
- let todoItems = [];
 
- function createItem()
- {
-    /** The input */
-    let input = document.getElementById('name');
-    /** The textarea */
-        let tarea = document.getElementById('description');
-    if( input.value.length === 0 ) {
-        alert(' The name is empty!');
+
+
+/**
+ * With parameters
+ */
+
+function WithParams( p_options )
+{
+    if( typeof p_options !== "object" ) {
+        alert(' Wrong type ');
         return;
     }
-    let newItem = new todoItem( input.value , tarea.value ) ;
-    todoItems.push( newItem );
 
-    addTodo( createTodoElement( newItem )  );
+    let name = p_options.name;
+    let age = p_options.age;
+
+    age = age + 22;
+    
+    console.log('  name ', name );
+
+    console.log(' Age ', age);
+
+
+    
 }
 
- 
+/**
+ * Return
+ */
 
-function todoItem( name, desc )
+function returnFunction( p_n )
 {
-    return  {
-        name: name,
-        desc: desc,
-        crated: new Date(),
-        done: false,
-        removed: false
+    let  age = p_n + 2;
+
+    let status = "None";
+
+    if( age > 20 ) {
+        status = "Mer";
+    }
+    if( age < 20 ) {
+        status = "Sig";
+    }
+
+
+    return {
+        r_age : age,
+        r_status: status
     }
 }
 
-//////
-CreateToDoList( 'formId', 'UlID' );
+
+/**
+ * Module
+ */
+
+function House( p_name )
+{
+    let color = "Red";
+    let floors = 3;
+    let name = p_name;
+
+    function changeColor( p_color )
+    {
+        if( p_color === "Orange" ) {
+            alert(' Wrong color!')
+            return;
+        }
+        color = p_color;
+    }
+
+    function isHaouseBlue()
+    {
+        if( color === "Blue" ) { return true; }
+        else { return false; }
+    }
+
+    return {
+        h_name: name,
+        h_floors: floors,
+        setColor: changeColor,
+        getColor: function() { return color; },
+        isHaouseBlue:isHaouseBlue
+    }
+}
+
